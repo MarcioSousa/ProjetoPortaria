@@ -1,0 +1,67 @@
+﻿@model ProjetoPortaria.Areas.Seguranca.Data.Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="/assets/js/color-modes.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" ) />
+    <link href="~/Content/css/sign-in.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+
+<body class="justify-content-center" id="login">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-signin w-100 m-auto">
+            <div>
+                <div>
+                    <!--Colocar logo da empresa !!
+                    <img class="mb-4" src="/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+                    <h1>Acessando o Sistema</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Count() > 0))
+                        {
+                            <div class="alert alert-danger alert-dismissable">
+                                @Html.ValidationSummary(false, "Verifique os seguintes erros:")
+                            </div>
+                        }
+                        <div class="form-floating">
+                            @Html.LabelFor(model => model.Email, "", htmlAttributes: new { @class = "control-label col-md-12" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "floatingInput" , placeholder = "email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            <label for="floatingInput">Email</label>
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.LabelFor(model => model.Senha, "", htmlAttributes: new { @class = "control-label col-md-12" })
+                            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", id = "floatingPassword", placeholder = "password" } )
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <div class="form-check text-start my-3">
+                            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Lembrar
+                            </label>
+                        </div>
+                        <input type="submit" value="Acessar" class="btn btn-danger" />
+                        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023-2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>
