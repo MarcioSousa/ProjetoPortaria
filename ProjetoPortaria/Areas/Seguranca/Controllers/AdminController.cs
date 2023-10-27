@@ -11,7 +11,7 @@ namespace ProjetoPortaria.Areas.Seguranca.Controllers
     public class AdminController : Controller
     {
         // GET: Seguranca/Admin
-        public ActionResult Index()
+        public ActionResult RegistroUser()
         {
             return View(GerenciadorUsuario.Users);
         }
@@ -37,7 +37,7 @@ namespace ProjetoPortaria.Areas.Seguranca.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RegistroUser");
                 }
                 else
                 {
